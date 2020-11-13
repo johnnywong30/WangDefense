@@ -5,10 +5,21 @@ using UnityEngine;
 public class Turret : MonoBehaviour
 {
     private Transform target;
+    [Header("Attributes")]
     public float range = 15f;
+    // shooting
+    public float fireRate = 1f;
+    private float fireCountdown = 0f; // makes sure that shooting is of fixed update
+    [Header("Unity Setup Fields")]
     public string enemyTag = "Enemy";
     public Transform partToRotate;
     public float turnSpeed = 5f;
+
+    public GameObject bulletPrefab;
+    public Transform firePoint;
+
+    
+
 
     // Start is called before the first frame update
     void Start()
@@ -52,6 +63,22 @@ public class Turret : MonoBehaviour
         // set y rotation
         partToRotate.rotation = Quaternion.Euler(0f, newRotation.y, 0);
 
+        // Shooting
+        if (fireCountdown <= 0f) {
+            Shoot();
+            fireCountdown = 1f/fireRate;
+        }
+        fireCountdown -= Time.deltaTime;
+
+    }
+
+    void Shoot()
+    {
+        GameObject this_bullet = (GameObject) Instantiate (bulletPrefab, firePoint.position, firePoint.rotation);
+        Bullet bullet = this_bullet.GetComponent<Bullet>();
+        if (bullet != null) {
+            bullet.Seek(target);
+        }
     }
 
     void OnDrawGizmosSelected()
