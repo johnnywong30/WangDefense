@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class MainMenu : MonoBehaviour
 {
     public string level1 = "Level 1";
+    public string settings = "Settings";
     public void Play()
     {
         Debug.Log("Play");
@@ -15,6 +16,7 @@ public class MainMenu : MonoBehaviour
     public void Settings()
     {
         Debug.Log("Settings");
+        SceneManager.LoadScene(settings);
     }
 
     public void Quit()
