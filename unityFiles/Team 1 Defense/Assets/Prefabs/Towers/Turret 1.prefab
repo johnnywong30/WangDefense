@@ -82,7 +82,7 @@ MonoBehaviour:
   turnSpeed: 5
   bulletPrefab: {fileID: 6465274168581762966, guid: 32fc52a55663c7b4ca6cbca9bebea82b,
     type: 3}
-  firePoint: {fileID: 0}
+  firePoint: {fileID: 1441869677}
 --- !u!1 &2138483765157613021
 GameObject:
   m_ObjectHideFlags: 0
